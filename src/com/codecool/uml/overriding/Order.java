@@ -1,21 +1,32 @@
 package com.codecool.uml.overriding;
 
 public class Order implements Orderable{
+    private static int counter;
     private int id;
     private String status;
 
+    Order(){
+        id = counter++;
+        status = "in cart";
+    }
 
     public String getStatus(){
-        return "";
+        return status;
     }
+
+    public int getId(){return id;}
 
     @Override
     public boolean checkout() {
-        return false;
+        System.out.println("Order is in checkout");
+        this.status = "in checkout";
+        return true;
     }
 
     @Override
     public boolean pay() {
-        return false;
+        System.out.println("Order is paid");
+        this.status = "paid";
+        return true;
     }
 }
